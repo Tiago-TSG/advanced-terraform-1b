@@ -2,6 +2,16 @@
 #                              Terraform Variables                             #
 ################################################################################
 
+variable "access_key" {
+  type        = string
+  description = "Access Key of the AWS Account"
+}
+
+variable "secret_key" {
+  type = string
+  description = "Secret Key of the AWS Account"
+}
+
 variable vpc_name {
   type        = string
   description = "Name of VPC"
