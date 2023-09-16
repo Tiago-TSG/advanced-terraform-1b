@@ -72,9 +72,7 @@ jobs:
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-      env:
-        ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      
       
       # with: # Set the secret as an input
       #   ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
@@ -94,7 +92,9 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan -input=false
-      
+      env:
+        ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
      
 
       # On push to "master", build or change infrastructure according to Terraform configuration files
