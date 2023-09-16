@@ -107,4 +107,7 @@ jobs:
       run: terraform apply -auto-approve -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY}}" -input=false
       
       # if: github.ref == 'refs/heads/"master"' && github.event_name == 'push'
+
+    - name: Terraform Destroy
+      run: terraform destroy -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY}}" -input=false
       
