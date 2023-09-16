@@ -87,8 +87,8 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false
       env:
-        TF_VAR_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-        TF_VAR_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
       # On push to "master", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
