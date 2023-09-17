@@ -52,10 +52,9 @@ jobs:
 
       working-directory: ${{ github.event.inputs.tfpath }}
 
-    # - name: Terraform Destroy
-    #   run: |
-    #     echo "** Running Terraform Destroy**"
-    #     terraform destroy -auto-approve
-      
-    #   working-directory: ${{ github.event.inputs.tfpath }}
-  
+    - name: Terraform Destroy
+      run: |
+        echo "** Running Terraform Destroy**"
+        terraform apply -auto-approve -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY}}" -input=false 
+
+      working-directory: ${{ github.event.inputs.tfpath }}
