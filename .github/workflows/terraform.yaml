@@ -7,7 +7,7 @@ on:
       tfpath:
         description: 'TF File Path'     
         required: false
-        default: ''
+        default: '.'
   push:
     branches: [ master ]
 
