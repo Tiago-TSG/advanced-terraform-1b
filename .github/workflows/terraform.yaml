@@ -62,6 +62,6 @@ jobs:
     - name: Terraform Destroy
       run: |
         echo "** Running Terraform Destroy**"
-        terraform apply -auto-approve -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY}}" -input=false 
+        terraform destroy -auto-approve -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY}}" -input=false 
 
       working-directory: ${{ github.event.inputs.tfpath }}
