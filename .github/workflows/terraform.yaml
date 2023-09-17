@@ -21,20 +21,21 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Configure AWS Credentials Action For GitHub Actions
-      uses: aws-actions/configure-aws-credentials@v3
-      with:
-        aws-access-key-id: ${{ secrets.ACCESS_KEY }}
-        aws-secret-access-key: ${{ secrets.SECRET_KEY }}
-        aws-region: us-east-1
+    # - name: Configure AWS Credentials Action For GitHub Actions
+    #   uses: aws-actions/configure-aws-credentials@v3
+    #   with:
+    #     aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+    #     aws-secret-access-key: ${{ secrets.SECRET_KEY }}
+    #     aws-region: us-east-1
         
-    # - name: Setup Terraform CLI
-    #   uses: hashicorp/setup-terraform@v2
-    - name: Install Terraform
-      run: |
-        wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
-        echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-        sudo apt update && sudo apt install terraform
+    # - name: Install Terraform
+    #   run: |
+    #     wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    #     echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    #     sudo apt update && sudo apt install terraform
+    
+    - name: Setup Terraform CLI
+      uses: hashicorp/setup-terraform@v2
 
     - name: Terraform init and validate
       run: |
@@ -53,9 +54,7 @@ jobs:
         echo `pwd`
         echo "tfpath ${{ github.event.inputs.tfpath }}"        
         echo "** Running Terraform Plan**"
-        terraform plan -var="access_key=${{ aws-access-key-id }}" -var="secret_key=${{ aws-secret-access-key }}" -input=false
-
-    # terraform plan -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY}}" -input=false
+        terraform plan -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY}}" -input=false
       
       working-directory: ${{ github.event.inputs.tfpath }}
 
