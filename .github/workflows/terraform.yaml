@@ -53,7 +53,7 @@ jobs:
         echo `pwd`
         echo "tfpath ${{ github.event.inputs.tfpath }}"        
         echo "** Running Terraform Plan**"
-        terraform plan -var="access_key=${aws-access-key-id}" -var="secret_key=${aws-secret-access-key}" -input=false
+        terraform plan -var="access_key=${{ aws-access-key-id }}" -var="secret_key=${{ aws-secret-access-key }}" -input=false
 
     # terraform plan -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY}}" -input=false
       
