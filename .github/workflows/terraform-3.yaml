@@ -6,13 +6,12 @@ on:
     
 jobs:
   Validate:
-    name: Terraform Validation and Build
     runs-on: ubuntu-latest
     steps:
     - name: Get Code
       uses: actions/checkout@v3
     
-    - name: Configure AWS Credentials Action For GitHub Actions
+    - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v3
       with:
         aws-access-key-id: ${{ secrets.ACCESS_KEY }}
