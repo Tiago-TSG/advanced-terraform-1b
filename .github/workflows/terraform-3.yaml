@@ -24,10 +24,37 @@ jobs:
     - name: Terraform init and validate
       run: |
         echo `pwd`
-        echo "** Running Terraform Init**"
+        echo "** Running Terraform Init **"
         terraform init
         
-        echo "** Running Terraform Validate**"
+        echo "** Running Terraform Validate **"
         terraform validate
+  
+  Plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
       
-      working-directory: ${{ github.event.inputs.tfpath }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.SECRET_KEY }}
+          aws-region: us-east-1
+  
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v2
+  
+      - name: Terraform init
+        run: |
+          echo `pwd`
+          echo "** Running Terraform Init **"
+          terraform init
+
+      - name: Terraform Plan
+        run: |
+          echo `pwd`
+          echo "** Running Terraform Plan **"
+          terraform plan -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY}}" -input=false
+  
