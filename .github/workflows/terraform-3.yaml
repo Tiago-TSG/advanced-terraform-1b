@@ -1,4 +1,4 @@
-name: Terraform - 3
+name: Terraform AWS Workflow
 on:
   push:
     branches:
