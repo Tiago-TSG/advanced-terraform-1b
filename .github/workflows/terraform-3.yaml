@@ -92,4 +92,39 @@ jobs:
 
           echo "** Running Terraform Apply **"
           echo "** Terraform Applying... **"
-        # terraform apply -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY }}" -input=false
+        # terraform apply -auto-approve -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY }}" -input=false
+
+  Destroy:
+    runs-on: ubuntu-latest
+    environment: Development
+    needs: [ Plan ]
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.SECRET_KEY }}
+          aws-region: us-east-1
+  
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v2
+  
+      - name: Terraform init
+        run: |
+          echo `pwd`
+          echo "** Running Terraform Init **"
+          terraform init
+      
+      - name: Terraform Destroy
+        run: |
+          echo `pwd`
+          echo "** Running Terraform Init **"
+          terraform init
+
+          echo "** Running Terraform Destroy **"
+          echo "** Terraform Destroying... **"
+        # terraform destroy -auto-approve -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY }}" -input=false
+
