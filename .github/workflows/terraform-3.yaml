@@ -125,5 +125,5 @@ jobs:
 
           echo "** Running Terraform Destroy **"
           echo "** Terraform Destroying... **"
-        ## terraform destroy -auto-approve -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY }}" -input=false
+        # terraform destroy -auto-approve -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY }}" -input=false
 
