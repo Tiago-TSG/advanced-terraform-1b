@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master
-    
+  workflow_dispatch:
+  
 jobs:
   Validate:
     runs-on: ubuntu-latest
