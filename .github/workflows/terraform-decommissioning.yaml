@@ -1,4 +1,4 @@
-name: Terraform AWS Workflow - Decommissioning
+name: Terraform AWS Workflow - Destroy
 on:
   workflow_dispatch:
 jobs:
