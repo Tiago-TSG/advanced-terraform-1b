@@ -92,4 +92,5 @@ jobs:
           terraform init
 
           echo "** Running Terraform Apply **"
-          terraform plan -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY }}" -input=false
+          echo "** Terraform Applying... **"
+        # terraform apply -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY }}" -input=false
